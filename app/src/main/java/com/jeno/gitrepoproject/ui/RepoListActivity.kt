@@ -35,8 +35,7 @@ class RepoListActivity : AppCompatActivity() {
             recyclerViewAdapter = RepoListAdapter()
             adapter = recyclerViewAdapter
 
-            val decoration = DividerItemDecoration(applicationContext, StaggeredGridLayoutManager.VERTICAL)
-            addItemDecoration(decoration)
+
         }
     }
 

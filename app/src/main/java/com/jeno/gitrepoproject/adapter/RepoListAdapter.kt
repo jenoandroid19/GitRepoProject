@@ -1,5 +1,6 @@
 package com.jeno.gitrepoproject.adapter
 
+import android.graphics.Color
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
@@ -31,8 +32,12 @@ class RepoListAdapter : RecyclerView.Adapter<RepoListAdapter.MyViewHolder>()  {
 
     class MyViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
-        val tvTitle = view.findViewById<TextView>(R.id.tvTitle)
+        val tvTitle = view.findViewById<TextView>(R.id.tvFirstName)
         val tvDesc = view.findViewById<TextView>(R.id.tvDesc)
+        val tvRepoName = view.findViewById<TextView>(R.id.tvReponame)
+        val tvStartCount = view.findViewById<TextView>(R.id.tvCount)
+        val tvLanguage = view.findViewById<TextView>(R.id.tvLanguage)
+        val tvLangColor = view.findViewById<TextView>(R.id.tvLangColor)
 
         fun bind(data: RepoListData) {
             tvTitle.text = data.username
@@ -40,6 +45,12 @@ class RepoListAdapter : RecyclerView.Adapter<RepoListAdapter.MyViewHolder>()  {
                 tvDesc.text = data.description
             } else {
                 tvDesc.text = "No Desc available."
+            }
+            tvRepoName.text = data.repositoryName
+            tvStartCount.text = data.totalStars.toString()
+            tvLanguage.text = data.language
+            if (data.languageColor != null){
+                tvLangColor.setBackgroundColor(Color.parseColor(data.languageColor))
             }
         }
 
