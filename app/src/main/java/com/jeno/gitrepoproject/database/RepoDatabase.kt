@@ -9,6 +9,8 @@ import com.jeno.gitrepoproject.jdos.RepoListData
 @Database(entities = [RepoListData::class],version = 1)
 abstract class RepoDatabase : RoomDatabase() {
 
+    abstract val repoDao : RepoDao
+
     companion object{
         private var instance : RepoDatabase?= null
         fun getInstance(context: Context): RepoDatabase {

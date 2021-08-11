@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/WrapLayout"
+    android:layout_gravity="center"
+    android:background="@null">
+
+    <LinearLayout
+        style="@style/HorizontalWrap"
+        android:background="@drawable/rect_white_rds4"
+        android:padding="10dp">
+
+        <ProgressBar style="@style/CustomProgressBarStyle" />
+
+        <TextView
+            android:id="@+id/progressMsg"
+            style="@style/TextStyle18"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="5dp"
+            android:text="Loading..." />
+    </LinearLayout>
+</LinearLayout>

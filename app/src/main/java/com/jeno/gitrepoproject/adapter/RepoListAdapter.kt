@@ -48,7 +48,11 @@ class RepoListAdapter : RecyclerView.Adapter<RepoListAdapter.MyViewHolder>()  {
             }
             tvRepoName.text = data.repositoryName
             tvStartCount.text = data.totalStars.toString()
-            tvLanguage.text = data.language
+            if (data.language !=null){
+                tvLanguage.text = data.language
+            }else{
+                tvLanguage.text = "No language available"
+            }
             if (data.languageColor != null){
                 tvLangColor.setBackgroundColor(Color.parseColor(data.languageColor))
             }

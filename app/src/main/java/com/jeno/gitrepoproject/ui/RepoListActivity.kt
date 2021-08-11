@@ -1,5 +1,6 @@
 package com.jeno.gitrepoproject.ui
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.jeno.gitrepoproject.R
 import com.jeno.gitrepoproject.adapter.RepoListAdapter
+import com.jeno.gitrepoproject.helper.ViewHelper
 import com.jeno.gitrepoproject.jdos.RepoListData
 import com.jeno.gitrepoproject.viewmodel.RepoListViewModel
 
@@ -18,12 +20,14 @@ class RepoListActivity : AppCompatActivity() {
 
     lateinit var recyclerViewAdapter: RepoListAdapter
     lateinit var mRepoView : RecyclerView
+    lateinit var mViewHelper : ViewHelper
+    lateinit var mProgressDialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_repo_list)
         mRepoView = findViewById(R.id.repoview)
-
+        mViewHelper = ViewHelper()
         initRecyclerView()
         createData()
     }
@@ -42,17 +46,34 @@ class RepoListActivity : AppCompatActivity() {
     fun createData() {
 
         val viewModel = ViewModelProviders.of(this).get(RepoListViewModel::class.java)
-        viewModel.getRecyclerListDataObserver().observe(this, Observer<ArrayList<RepoListData>>{
+        viewModel.apiResponse.observe(this, Observer<Boolean>{
+            if (it){
+                hideProgressDialog()
+            }else{
+                hideProgressDialog()
+            }
+        })
 
-            if(it != null) {
-                recyclerViewAdapter.setListData(it)
+        viewModel.allRepoList.observe(this, Observer {
+            if(it != null && it.size > 0) {
+                recyclerViewAdapter.setListData(it as ArrayList<RepoListData>)
                 recyclerViewAdapter.notifyDataSetChanged()
 
             } else {
-                Toast.makeText(this, "Error in getting data from api.", Toast.LENGTH_LONG).show()
+                showProgressDialog()
+                viewModel.makeApiCall()
             }
-
         })
-        viewModel.makeApiCall()
+    }
+
+    fun showProgressDialog() {
+        mProgressDialog = mViewHelper.progressDialog(this,"Fetching data...")
+        mProgressDialog.show()
+    }
+
+    fun hideProgressDialog() {
+        if (mProgressDialog!=null && mProgressDialog.isShowing){
+            mProgressDialog.dismiss()
+        }
     }
 }
