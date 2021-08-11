@@ -13,7 +13,7 @@ class CommonHelper {
 
     fun progressDialog(pContext: Context, pMessage: String): Dialog {
 
-        var lProgressDialog: Dialog = Dialog(pContext, R.style.DialogCustomTheme)
+        var lProgressDialog = Dialog(pContext, R.style.DialogCustomTheme)
         lProgressDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         lProgressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         lProgressDialog.setContentView(R.layout.progress_dialog)

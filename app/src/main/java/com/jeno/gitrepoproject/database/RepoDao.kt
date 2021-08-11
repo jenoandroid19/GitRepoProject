@@ -13,6 +13,6 @@ interface RepoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertRepoLists(repoListData: RepoListData)
 
-    @Query("SELECT * from repo_table")
+    @Query("SELECT * from repo_table ORDER BY totalStars DESC")
     fun getAllRepoList():LiveData<List<RepoListData>>
 }

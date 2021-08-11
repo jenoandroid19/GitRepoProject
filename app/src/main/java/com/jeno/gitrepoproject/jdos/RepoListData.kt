@@ -16,7 +16,7 @@ data class RepoListData(
     @ColumnInfo(name = "description")
     val description: String?,
     @ColumnInfo(name = "language")
-    val language: String?,
+    var language: String?,
     @ColumnInfo(name = "languageColor")
     val languageColor: String?,
     @ColumnInfo(name = "totalStars")

@@ -1,23 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.RepoListActivity">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/refresh_layout"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/repoview"
+        android:layout_height="match_parent"
+        tools:context=".ui.RepoListActivity">
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="Trending Repositories"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/search_repo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/header"
+            android:layout_margin="10dp"
+            android:background="@drawable/search_background"
+            android:hint="Search"
+            android:padding="10dp" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="visible" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_below="@+id/search_repo">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/repoview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="visible" />
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <TextView
+            android:id="@+id/error_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No Repository Found"
+            android:layout_centerInParent="true"
+            android:textSize="16sp"
+            android:visibility="gone"
+            android:textStyle="bold"/>
 
         <RelativeLayout
             android:id="@+id/network_retry_layout"
@@ -50,5 +84,5 @@
         </RelativeLayout>
 
 
-</RelativeLayout>
+    </RelativeLayout>
 </layout>

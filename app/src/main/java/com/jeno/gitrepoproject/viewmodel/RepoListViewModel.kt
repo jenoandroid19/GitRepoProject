@@ -29,7 +29,12 @@ class RepoListViewModel(application: Application) :AndroidViewModel(application)
                 if(response.isSuccessful) {
                     apiResponse.postValue(true)
                     for (repo in response.body()!!){
-                        insertRepoList(repo)
+                        if (repo.language !=null){
+                            insertRepoList(repo)
+                        }else{
+                            repo.language = "lang"
+                            insertRepoList(repo)
+                        }
                     }
                 } else {
                     apiResponse.postValue(false)
