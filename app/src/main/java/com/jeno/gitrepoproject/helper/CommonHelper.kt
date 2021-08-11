@@ -4,11 +4,12 @@ import android.app.Dialog
 import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.net.ConnectivityManager
 import android.view.Window
 import android.widget.TextView
 import com.jeno.gitrepoproject.R
 
-class ViewHelper {
+class CommonHelper {
 
     fun progressDialog(pContext: Context, pMessage: String): Dialog {
 
@@ -24,5 +25,15 @@ class ViewHelper {
 
 
         return lProgressDialog
+    }
+
+    fun isNetworkAvailable(pContext : Context):Boolean {
+        val ConnectionManager = pContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = ConnectionManager.activeNetworkInfo
+        return if (networkInfo != null && networkInfo.isConnected == true) {
+            true
+        } else {
+            false
+        }
     }
 }
