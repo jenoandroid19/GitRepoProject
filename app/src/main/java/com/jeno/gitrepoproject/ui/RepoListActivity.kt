@@ -138,9 +138,11 @@ class RepoListActivity : AppCompatActivity() {
 
     private fun showHideViews(pShowError: Boolean){
         if (pShowError){
+            mActivityRepoBinding.searchRepo.visibility = View.GONE
             mActivityRepoBinding.networkRetryLayout.visibility = View.VISIBLE
             mActivityRepoBinding.refreshLayout.visibility = View.GONE
         }else{
+            mActivityRepoBinding.searchRepo.visibility = View.VISIBLE
             mActivityRepoBinding.networkRetryLayout.visibility = View.GONE
             mActivityRepoBinding.refreshLayout.visibility = View.VISIBLE
         }
