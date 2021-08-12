@@ -1,7 +1,7 @@
 # GitRepoProject
 Components used in this project : 
 
-- MVVM architecture 
+- MVVM architecture with Kotlin 
 - Used Retrofit library for REST API call 
 - Handled Offline storage with RoomDB and Livedata 
 - Used Data binding library 
