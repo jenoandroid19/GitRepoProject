@@ -6,5 +6,5 @@ Components used in this project :
 - Handled Offline storage with RoomDB and Livedata 
 - Used Data binding library 
 - Search option implemented with Repository name and Language 
-- Handled Network state 
+- Handled Network state and Retry option
 - Implemented Force pull refresh option
